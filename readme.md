@@ -1,5 +1,7 @@
 # Comandos que he ido usando en Arch Linux
 
+---
+
 ## ACTUALIZAR APPS
 yay -Syu
 
@@ -18,7 +20,7 @@ sudo lshw
 
 ## AGREGAR SSH KEY EN ARCH
 pacman -S keychain
-# append to ~/.bashrc the next command
+now append to ~/.bashrc the next command
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 
 ## REINICIAR INTERFAZ GRAFICA
