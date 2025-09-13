@@ -9,7 +9,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 PS1="\u@\h \w \$ "
-export PATH=".:$PATH"
+export PATH=".:$PATH:$PATH/myScripts"
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 cd ./Escritorio/
 ```
@@ -119,3 +119,12 @@ pipx inject konsave setuptools
 konsave --save <nombre-plantilla>
 konsave --list
 konsave --apply <id-plantilla>
+
+
+### Docker n8n
+```
+docker volume create n8n_data
+```
+```
+docker run -it --rm  --name n8n  -p 5678:5678  -e GENERIC_TIMEZONE="Europe/Madrid"  -e TZ="Europe/Madrid"  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true  -e N8N_RUNNERS_ENABLED=true  -v n8n_data:/home/node/.n8n  docker.n8n.io/n8nio/n8n
+```
