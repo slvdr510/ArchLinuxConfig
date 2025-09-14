@@ -1,5 +1,13 @@
 # Comandos que he ido usando en Arch Linux
 
+### DESHABILITAR baloo_file_ext
+Primero vemos que programas usan baloo como dependencia.
+Si tiene un alto consumo de CPU lo deshabilitamos por mal funcionamiento.
+```
+pacman -Qi baloo | grep "Required By"
+sudo balooctl disable
+```
+
 ### .bashrc
 ```
 # If not running interactively, don't do anything
@@ -128,3 +136,5 @@ docker volume create n8n_data
 ```
 docker run -it --rm  --name n8n  -p 5678:5678  -e GENERIC_TIMEZONE="Europe/Madrid"  -e TZ="Europe/Madrid"  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true  -e N8N_RUNNERS_ENABLED=true  -v n8n_data:/home/node/.n8n  docker.n8n.io/n8nio/n8n
 ```
+
+
