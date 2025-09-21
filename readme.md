@@ -59,66 +59,83 @@ XDG_VIDEOS_DIR="$HOME/videos"
 ```
 
 ### ACTUALIZAR APPS
+```
 yay -Syu
 sudo pacman -Syu
-
+```
 
 ### DESCOMPRIMIR UN ARCHIVO rar o tar.gz
+```
 unrar x *.rar
 tar xvzf *.tar.gz
-
+```
 
 ### VER AJUSTES DE REDES
+```
 ip addr
-
+```
 
 ### VER MODELO EQUIPO
+```
 cat /sys/class/dmi/id/product_name
-
+```
 
 ### VER COMPONENTES DEL EQUIPO
+```
 sudo lshw
-
+```
 
 ### AGREGAR SSH KEY EN ARCH
+```
 pacman -S keychain
+```
 now append to ~/.bashrc the next command
+```
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
-
+```
 
 ### CREAR REPOSITORIO GIT
+```
 mkdir Proyect
 cd Proyect
 git init -b main
 echo "#Proyect" >> readme.md
 git add .
 git commit -m "First commit"
-
+```
 
 ### CREAR REPOSITORIO DE GITHUB DESDE TERMINAL
+```
 cd Proyect
 sudo pacman -S github-cli
 gh auth login
 gh repo create Proyect --private --source=.
 git push origin main
+```
 
 
 ### TRAER CAMBIOS DE GITHUB
+```
 git fetch origin
-
+```
 
 ### INTEGRAR CAMBIOS DE GITHUB
+```
 git merge origin
-
+```
 
 ### REINICIAR INTERFAZ GRAFICA
 ctrl + alt + f2
+```
 systemctl restart display-manager.service
-
+```
 
 ### AGREGAR CONEXION VPN WIREGUARD
+archivo de la conexion de wireguard es un <nombre_archivo>.conf
+```
 nmcli connection import type wireguard file <yourfilehere>
-el archivo será algo como home.conf
+```
+
 
 
 ### INSTALAR konsave PARA BACKUP DE GUI
@@ -132,6 +149,11 @@ konsave --apply <id-plantilla>
 ```
 
 ### INSTALAR Docker
+Note that docker.service starts the service on boot, whereas docker.socket starts Docker on first usage which can decrease boot times
+```
+systemctl enable docker.socket
+```
+
 
 ### Docker n8n
 ```
