@@ -60,6 +60,7 @@ XDG_VIDEOS_DIR="$HOME/videos"
 
 ### ACTUALIZAR APPS
 yay -Syu
+sudo pacman -Syu
 
 
 ### DESCOMPRIMIR UN ARCHIVO rar o tar.gz
@@ -121,13 +122,16 @@ el archivo será algo como home.conf
 
 
 ### INSTALAR konsave PARA BACKUP DE GUI
+```
 python -m pipx install konsave
 pipx install setuptools
 pipx inject konsave setuptools
 konsave --save <nombre-plantilla>
 konsave --list
 konsave --apply <id-plantilla>
+```
 
+### INSTALAR Docker
 
 ### Docker n8n
 ```
@@ -137,4 +141,7 @@ docker volume create n8n_data
 docker run -it --rm  --name n8n  -p 5678:5678  -e GENERIC_TIMEZONE="Europe/Madrid"  -e TZ="Europe/Madrid"  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true  -e N8N_RUNNERS_ENABLED=true  -v n8n_data:/home/node/.n8n  docker.n8n.io/n8nio/n8n
 ```
 
-
+### INSTALAR man
+```
+sudo pacman -S man-pages
+```
