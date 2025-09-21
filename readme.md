@@ -19,7 +19,7 @@ alias grep='grep --color=auto'
 PS1="\u@\h \w \$ "
 export PATH=".:$PATH:$PATH/myScripts"
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
-cd ./Escritorio/
+cd ~/desktop
 ```
 
 ### /etc/xdg/user-dirs.defaults
