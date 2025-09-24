@@ -1,5 +1,12 @@
 # Comandos que he ido usando en Arch Linux
 
+### UPDATE grub timeout 
+```
+sudo nano /etc/default/grub
+# Cambiar valor de GRUB_TIMEOUT
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
 ### DESHABILITAR baloo_file_ext
 Primero vemos que programas usan baloo como dependencia.
 Si tiene un alto consumo de CPU lo deshabilitamos por mal funcionamiento.
@@ -136,8 +143,6 @@ archivo de la conexion de wireguard es un <nombre_archivo>.conf
 nmcli connection import type wireguard file <yourfilehere>
 ```
 
-
-
 ### INSTALAR konsave PARA BACKUP DE GUI
 ```
 python -m pipx install konsave
@@ -153,7 +158,6 @@ Note that docker.service starts the service on boot, whereas docker.socket start
 ```
 systemctl enable docker.socket
 ```
-
 
 ### Docker n8n
 ```
