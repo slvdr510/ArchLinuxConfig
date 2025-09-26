@@ -1,5 +1,21 @@
 # Comandos que he ido usando en Arch Linux
 
+### SETUP hibernation
+```
+lsblk -l
+get the uuid of the SWAP partition
+sudo nano /etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=<tu-uuid-de-particion-swap>"
+exit nano
+sudo nano /etc/mkinitcpio.conf
+busca la linea sin comentar que pone: HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)
+agrega resume despues de udev
+HOOKS=(base udev resume autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)
+exit nano
+sudo mkinitcpio -P
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
 ### UPDATE grub timeout 
 ```
 sudo nano /etc/default/grub
