@@ -82,6 +82,15 @@ XDG_PICTURES_DIR="$HOME/pictures"
 XDG_VIDEOS_DIR="$HOME/videos"
 ```
 
+### REINICIAR interfaz grafica KDE6
+```bash
+#!/bin/bash
+
+#killall plasmashell; plasmashell &
+killall plasmashell; plasmashell > /dev/null 2>&1 &
+clear
+```
+
 ### ACTUALIZAR APPS
 ```
 yay -Syu
