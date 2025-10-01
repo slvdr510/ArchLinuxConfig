@@ -197,3 +197,17 @@ docker run -it --rm  --name n8n  -p 5678:5678  -e GENERIC_TIMEZONE="Europe/Madri
 ```
 sudo pacman -S man-pages
 ```
+
+### INSTALAR qemu
+sudo pacman -S qemu qemu-emulators-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat libvirt
+sudo systemctl enable libvirtd
+sudo systemctl start --now libvirtd
+sudo usermod -aG libvirt $(whoami)
+newgrp libvirt
+sudo EDITOR=nano virsh net-edit default
+sudo systemctl restart libvirtd
+sudo virsh net-start default
+sudo virsh net-autostart default
+qemu-system-x86_64 --version
+sudo virsh net-list --all
+virt-manager
