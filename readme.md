@@ -211,3 +211,12 @@ sudo virsh net-autostart default
 qemu-system-x86_64 --version
 sudo virsh net-list --all
 virt-manager
+
+
+### SETUP bluetooth
+sudo pacman -S bluez bluez-utils
+sudo systemctl enable --now bluetooth.service
+bluetoothctl
+list
+power on
+quit
