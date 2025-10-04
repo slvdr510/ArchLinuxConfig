@@ -1,5 +1,25 @@
 # Comandos que he ido usando en Arch Linux
 
+### SETUP lang for locale
+```
+sudo nano /etc/locale.gen
+# Uncoment the line you'd like, in my case:
+en_US.UTF-8 UTF-8
+es_ES.UTF-8 UTF-8
+exit nano
+sudo locale-gen
+sudo nano /etc/locale.conf
+# add/overwrite the next lines:
+LANG=en_US.UTF-8
+LC_TIME=es_ES.UTF-8
+exit nano
+unset LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT LC_IDENTIFICATION LC_ALL
+source /etc/profile.d/locale.sh
+# log out your sesion and log in
+
+# Now check here in KDE plasma config it's all okey
+cat ~/.config/plasma-localerc
+
 ### SETUP hibernation
 ```
 lsblk -l
