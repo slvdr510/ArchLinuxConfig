@@ -219,6 +219,7 @@ sudo pacman -S man-pages
 ```
 
 ### INSTALAR qemu
+```
 sudo pacman -S qemu qemu-emulators-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat libvirt
 sudo systemctl enable libvirtd
 sudo systemctl start --now libvirtd
@@ -231,20 +232,23 @@ sudo virsh net-autostart default
 qemu-system-x86_64 --version
 sudo virsh net-list --all
 virt-manager
-
+```
 
 ### SETUP bluetooth
+```
 sudo pacman -S bluez bluez-utils
 sudo systemctl enable --now bluetooth.service
 bluetoothctl
 list
 power on
 quit
-
+```
 
 ### ADD passwordless ssh conections
+```
 sudo pacman -S sshpass
 ssh-copy-id user@domain
 # now enter the password
 # then try to ssh user@domain
 # et voila
+```
