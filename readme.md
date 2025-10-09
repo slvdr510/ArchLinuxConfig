@@ -16,9 +16,9 @@ exit nano
 unset LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT LC_IDENTIFICATION LC_ALL
 source /etc/profile.d/locale.sh
 # log out your sesion and log in
-
-# Now check here in KDE plasma config it's all okey
+# Now check with the next line in KDE plasma config it's all okey
 cat ~/.config/plasma-localerc
+```
 
 ### SETUP hibernation
 ```
@@ -45,9 +45,9 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ### DESHABILITAR baloo_file_ext
-Primero vemos que programas usan baloo como dependencia.
-Si tiene un alto consumo de CPU lo deshabilitamos por mal funcionamiento.
 ```
+# Primero vemos que programas usan baloo como dependencia.
+# Si tiene un alto consumo de CPU lo deshabilitamos por mal funcionamiento.
 pacman -Qi baloo | grep "Required By"
 sudo balooctl disable
 ```
@@ -103,7 +103,7 @@ XDG_VIDEOS_DIR="$HOME/videos"
 ```
 
 ### REINICIAR interfaz grafica KDE6
-```bash
+```
 #!/bin/bash
 
 #killall plasmashell; plasmashell &
@@ -184,8 +184,8 @@ systemctl restart display-manager.service
 ```
 
 ### AGREGAR CONEXION VPN WIREGUARD
-archivo de la conexion de wireguard es un <nombre_archivo>.conf
 ```
+# archivo de la conexion de wireguard es un <nombre_archivo>.conf
 nmcli connection import type wireguard file <yourfilehere>
 ```
 
