@@ -246,7 +246,6 @@ quit
 
 ### ADD passwordless ssh conections
 ```
-sudo pacman -S sshpass
 ssh-copy-id user@domain
 # now enter the password
 # then try to ssh user@domain
