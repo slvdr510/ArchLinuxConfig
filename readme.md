@@ -44,6 +44,20 @@ sudo nano /etc/default/grub
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+### Install YAY
+```
+// Install proccess still not covered
+
+// update packages
+yay
+
+// install package
+yay -S package
+
+// uninstall package
+yay -Rns package
+```
+
 ### DESHABILITAR baloo_file_ext
 ```
 # Primero vemos que programas usan baloo como dependencia.
@@ -250,4 +264,9 @@ ssh-copy-id user@domain
 # now enter the password
 # then try to ssh user@domain
 # et voila
+```
+
+### F5 VPN for my University conection
+```
+yay -S f5vpn
 ```
