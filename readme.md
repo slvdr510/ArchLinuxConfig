@@ -270,3 +270,8 @@ ssh-copy-id user@domain
 ```
 yay -S f5vpn
 ```
+
+### iperf3 install
+```
+yay -S iperf3
+```
