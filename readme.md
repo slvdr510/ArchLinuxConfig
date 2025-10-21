@@ -161,26 +161,19 @@ now append to ~/.bashrc the next command
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 ```
 
-### CREAR REPOSITORIO GIT
+### github-cli INSTALL
 ```
-mkdir Proyect
-cd Proyect
-git init -b main
-echo "#Proyect" >> readme.md
-git add .
-git commit -m "First commit"
-```
-
-### CREAR REPOSITORIO DE GITHUB DESDE TERMINAL
-```
-cd Proyect
 sudo pacman -S github-cli
 gh auth login
-gh repo create Proyect --private --source=.
-git push origin main
 ```
 
-
+### create github repository using terminal
+```
+cd Proyect
+git init -b main
+gh repo create <ReplaceProjectName> --<private/public> --source=.
+git push origin main
+```
 ### TRAER CAMBIOS DE GITHUB
 ```
 git fetch origin
@@ -192,7 +185,7 @@ git merge origin
 ```
 
 ### REINICIAR INTERFAZ GRAFICA
-ctrl + alt + f2
+DONT DO THIS -> ctrl + alt + f2 
 ```
 systemctl restart display-manager.service
 ```
