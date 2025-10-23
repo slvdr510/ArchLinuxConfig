@@ -284,3 +284,9 @@ kid3 music.mp3
 # Install
 yay -S edb-debugger
 ```
+
+### configuradorfnmt
+```
+# Install
+yay -S configuradorfnmt
+```
