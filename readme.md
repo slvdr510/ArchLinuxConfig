@@ -116,22 +116,21 @@ XDG_PICTURES_DIR="$HOME/pictures"
 XDG_VIDEOS_DIR="$HOME/videos"
 ```
 
-### REINICIAR interfaz grafica KDE6
+### ~/scritps/ggui
 ```
 #!/bin/bash
-
-#killall plasmashell; plasmashell &
-killall plasmashell; plasmashell > /dev/null 2>&1 &
-clear
+killall plasmashell > /dev/null 2>&1; plasmashell > /dev/null 2>&1 &
 ```
 
-### ACTUALIZAR APPS
+### ~/scripts/upup
 ```
-yay -Syu
-sudo pacman -Syu
+#!/bin/bash
+yay -Syu --noconfirm --needed
+yay -Sc --noconfirm
+
 ```
 
-### DESCOMPRIMIR UN ARCHIVO rar o tar.gz
+### DESCOMPRIMIR rar | tar.gz
 ```
 unrar x *.rar
 tar xvzf *.tar.gz
@@ -152,35 +151,22 @@ cat /sys/class/dmi/id/product_name
 sudo lshw
 ```
 
-### AGREGAR SSH KEY EN ARCH
+### ssh keychain
 ```
-pacman -S keychain
-```
-now append to ~/.bashrc the next command
-```
+yay -S keychain
+# now append to ~/.bashrc the next command
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
 ```
 
-### github-cli INSTALL
+### github-cli
 ```
-sudo pacman -S github-cli
+yay -S github-cli
 gh auth login
-```
-
-### create github repository using terminal
-```
 cd Proyect
 git init -b main
 gh repo create <ReplaceProjectName> --<private/public> --source=.
 git push origin main
-```
-### TRAER CAMBIOS DE GITHUB
-```
-git fetch origin
-```
-
-### INTEGRAR CAMBIOS DE GITHUB
-```
+git fetch
 git merge origin
 ```
 
@@ -198,6 +184,7 @@ nmcli connection import type wireguard file <yourfilehere>
 
 ### INSTALAR konsave PARA BACKUP DE GUI
 ```
+# NOT WORKING
 python -m pipx install konsave
 pipx install setuptools
 pipx inject konsave setuptools
