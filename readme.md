@@ -268,3 +268,12 @@ yay -S f5vpn
 ```
 yay -S iperf3
 ```
+
+### kid3 install
+```
+// Used to add/edit tags and add png covers to only sound files.
+yay -S kid3
+# example
+# kid3 music.mp3
+# drag and drop an image and click save
+```
