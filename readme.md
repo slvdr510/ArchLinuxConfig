@@ -277,3 +277,9 @@ yay -S edb-debugger
 # Install
 yay -S configuradorfnmt
 ```
+
+### btop
+```
+# Install
+yay -s btop
+```
