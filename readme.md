@@ -40,13 +40,80 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 ### grub
 ```
-#Install
+# Install
 Still not covered
 
 # Edit
 sudo nano /etc/default/grub
 // edit the file
 sudo grub-mkconfig -o /boot/grub/grub.cfg # to persist changes
+```
+
+### systemd-boot
+```
+# Switching from GRUB to systemd-boot
+
+This guide is for systems using UEFI and having the FAT32 EFI System Partition mounted at /boot.
+
+
+# Display all partition identifiers (UUIDs and PARTUUIDs).
+# Find the partition mounted as '/' (it's the large Linux filesystem) and copy its PARTUUID.
+
+blkid
+
+# // Action: Copy the PARTUUID of the partition mounted as '/'. 
+# // Example PARTUUID: b97646ef-527c-4cc7-9b38-eb6e8f0c38ae
+
+/intel-ucode.img
+/amd-ucode.img
+
+# Install your microcode package (do only the one your CPU is):
+#sudo pacman -S intel-ucode
+#sudo pacman -S amd-ucode
+
+# Install systemd-boot
+sudo bootctl install
+
+# Create the main loader configuration file
+sudo nano /boot/loader/loader.conf
+
+# In my case, file content should be:
+default arch
+timeout 0
+editor no
+
+# Create the Arch Boot Entry
+# Create the entry file (named 'arch.conf') using the PARTUUID copied in Step 1.
+sudo nano /boot/loader/entries/arch.conf
+
+# File contents (REPLACE YOUR-ROOT-PARTUUID-HERE and choose ONLY ONE microcode line):
+title   Arch Linux
+linux   /vmlinuz-linux
+#initrd  /intel-ucode.img
+#initrd /amd-ucode.img
+initrd  /initramfs-linux.img
+options root=PARTUUID=YOUR-ROOT-PARTUUID-HERE rw
+
+# Reinstall Kernel (Ensures files are present for systemd-boot)
+# This regenerates and places all images (vmlinuz, initramfs, microcode) correctly onto /boot.
+sudo pacman -S linux
+
+# Verify Configuration
+bootctl list
+
+# Cleanup and Finalization
+# Only proceed with this section after `bootctl list` shows no errors.
+
+# Remove GRUB packages
+sudo pacman -Rns grub os-prober
+
+# Remove residual GRUB files from the /boot partition
+sudo rm -rf /boot/grub /boot/EFI/GRUB
+
+# Time to reboot and pray
+reboot
+
+# Note: To access the systemd-boot menu after setting timeout 0, press and hold the SPACE bar during the brief boot window.
 ```
 
 ### yay
@@ -246,7 +313,7 @@ power on
 quit
 ```
 
-### ADD passwordless ssh conections
+### passwordless ssh conections
 ```
 ssh-copy-id user@domain
 # now enter the password
