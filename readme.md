@@ -1,4 +1,4 @@
-# Comandos que he ido usando en Arch Linux
+# Comandos usados en Arch Linux
 
 ### SETUP lang for locale
 ```
@@ -20,49 +20,57 @@ source /etc/profile.d/locale.sh
 cat ~/.config/plasma-localerc
 ```
 
-### SETUP hibernation
+### hibernation
 ```
+# Setup
 lsblk -l
-# get the uuid of the SWAP partition
+// get the uuid of the SWAP partition
 sudo nano /etc/default/grub
-# edit the next line and write the swap partition uuid
+// edit the next line and write the swap partition uuid
 GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=<tu-uuid-de-particion-swap>"
-# exit nano
+// exit nano
 sudo nano /etc/mkinitcpio.conf
-# busca la linea sin comentar que pone: HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)
-# agrega resume despues de udev
+// busca la linea sin comentar que pone: HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)
+// agrega resume despues de udev
 HOOKS=(base udev resume autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)
-# exit nano
+// exit nano
 sudo mkinitcpio -P
 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### UPDATE grub timeout 
+### grub
 ```
+#Install
+Still not covered
+
+# Edit
 sudo nano /etc/default/grub
-# Cambiar valor de GRUB_TIMEOUT
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+// edit the file
+sudo grub-mkconfig -o /boot/grub/grub.cfg # to persist changes
 ```
 
-### Install YAY
+### yay
 ```
-// Install proccess still not covered
+# Install
+still not covered
 
-// update packages
+# Update
 yay
 
-// install package
+# Install package
 yay -S package
 
-// uninstall package
+# Uninstall package
 yay -Rns package
+
+# Clear cached packages
 ```
 
 ### DESHABILITAR baloo_file_ext
 ```
-# Primero vemos que programas usan baloo como dependencia.
-# Si tiene un alto consumo de CPU lo deshabilitamos por mal funcionamiento.
+// Primero vemos que programas usan baloo como dependencia.
 pacman -Qi baloo | grep "Required By"
+// Si tiene un alto consumo de CPU lo deshabilitamos por mal funcionamiento.
 sudo balooctl disable
 ```
 
@@ -170,15 +178,14 @@ git fetch
 git merge origin
 ```
 
-### REINICIAR INTERFAZ GRAFICA
-DONT DO THIS -> ctrl + alt + f2 
+### reboot ui
 ```
 systemctl restart display-manager.service
 ```
 
 ### AGREGAR CONEXION VPN WIREGUARD
 ```
-# archivo de la conexion de wireguard es un <nombre_archivo>.conf
+# El archivo de la conexion de wireguard es un <nombre_archivo>.conf
 nmcli connection import type wireguard file <yourfilehere>
 ```
 
@@ -199,26 +206,27 @@ Note that docker.service starts the service on boot, whereas docker.socket start
 systemctl enable docker.socket
 ```
 
-### Docker n8n
+### n8n
 ```
+# Do only 1 time
 docker volume create n8n_data
-```
-```
+
+# Do this whenever you want to run n8n
 docker run -it --rm  --name n8n  -p 5678:5678  -e GENERIC_TIMEZONE="Europe/Madrid"  -e TZ="Europe/Madrid"  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true  -e N8N_RUNNERS_ENABLED=true  -v n8n_data:/home/node/.n8n  docker.n8n.io/n8nio/n8n
 ```
 
-### INSTALAR man
+### man-pages
 ```
-sudo pacman -S man-pages
+yay -S man-pages
 ```
 
-### INSTALAR qemu
+### qemu
 ```
-sudo pacman -S qemu qemu-emulators-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat libvirt
+yay -S qemu qemu-emulators-full virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat libvirt
 sudo systemctl enable libvirtd
 sudo systemctl start --now libvirtd
-sudo usermod -aG libvirt $(whoami)
 newgrp libvirt
+sudo usermod -aG libvirt $(whoami)
 sudo EDITOR=nano virsh net-edit default
 sudo systemctl restart libvirtd
 sudo virsh net-start default
@@ -246,13 +254,15 @@ ssh-copy-id user@domain
 # et voila
 ```
 
-### F5 VPN for my University conection
+### f5vpn
 ```
+#Install
 yay -S f5vpn
 ```
 
-### iperf3 install
+### iperf3
 ```
+# Install
 yay -S iperf3
 ```
 
@@ -263,7 +273,8 @@ yay -S kid3
 
 # Use example
 kid3 music.mp3
-// drag and drop an image, click save
+// drag and drop an image
+// click save
 ```
 
 ### edb
