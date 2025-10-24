@@ -361,3 +361,8 @@ yay -S configuradorfnmt
 # Install
 yay -s btop
 ```
+### docker-desktop
+```
+# Install
+https://docs.docker.com/desktop/setup/install/linux/
+```
