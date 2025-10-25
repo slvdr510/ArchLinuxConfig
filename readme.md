@@ -376,8 +376,14 @@ https://docs.docker.com/desktop/setup/install/linux/
 yay -S xournalpp
 ```
 
-### nuclei
+### nuclei 
 ```
 # Install
 yay -S nuclei
+```
+
+### cvemap 
+```
+# Install
+yay -S cvemap
 ```
