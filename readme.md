@@ -382,8 +382,8 @@ yay -S xournalpp
 yay -S nuclei
 ```
 
-### cvemap 
+### cvemap -> vulnx 
 ```
 # Install
-yay -S cvemap
+yay -S vulnx
 ```
