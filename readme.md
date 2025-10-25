@@ -369,3 +369,15 @@ yay -s btop
 # Install
 https://docs.docker.com/desktop/setup/install/linux/
 ```
+
+### xournalpp
+```
+# Install
+yay -S xournalpp
+```
+
+### nuclei
+```
+# Install
+yay -S nuclei
+```
