@@ -205,8 +205,11 @@ yay -Sc --noconfirm
 
 ```
 
-### DESCOMPRIMIR rar | tar.gz
+### DESCOMPRIMIR rar | tar.gz | zip
 ```
+yay -S unzip
+
+unzip *.zip
 unrar x *.rar
 tar xvzf *.tar.gz
 ```
