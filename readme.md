@@ -387,3 +387,19 @@ yay -S nuclei
 # Install
 yay -S vulnx
 ```
+
+### lazydocker
+```
+# Install
+yay -S lazydocker
+```
+
+### docui
+```
+# Install
+go install github.com/skanehira/docui@latest
+// add
+$(go env GOPATH)/bin
+// to $PATH - my line will be like this
+export PATH=".:$PATH:$HOME/scripts:$(go env GOPATH)/bin"
+```
