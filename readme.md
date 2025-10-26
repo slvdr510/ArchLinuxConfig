@@ -398,8 +398,8 @@ yay -S lazydocker
 ```
 # Install
 go install github.com/skanehira/docui@latest
-// add
+// on file ~/.bashrc add this to $PATH
 $(go env GOPATH)/bin
-// to $PATH - my line will be like this
-export PATH=".:$PATH:$HOME/scripts:$(go env GOPATH)/bin"
+// it should look similar to this
+export PATH="$PATH:$(go env GOPATH)/bin"
 ```
