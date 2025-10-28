@@ -403,3 +403,14 @@ $(go env GOPATH)/bin
 // it should look similar to this
 export PATH="$PATH:$(go env GOPATH)/bin"
 ```
+
+### docker quakejs
+```
+# Pull
+docker pull treyyoder/quakejs:latest
+
+# Run
+sudo docker pull treyyoder/quakejs:latest
+docker run -d --name quakejs -e HTTP_PORT=8080 -p 8080:80 -p 27960:27960 treyyoder/quakejs:latest # DETACHED
+docker run --rm -it -e HTTP_PORT=8080 -p 8080:8080 -p 27960:27960 treyyoder/quakejs:latest # EZ RERUN
+```
