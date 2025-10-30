@@ -427,5 +427,12 @@ wihotspot
 
 ### sshfs for KDE Conenct - Browse this device
 ```
+# Install
 yay -S sshfs
+```
+
+### bottles - Windows software on Linux
+```
+# Install
+yay -S bottles
 ```
