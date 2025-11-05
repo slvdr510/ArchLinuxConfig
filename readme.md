@@ -436,3 +436,16 @@ yay -S sshfs
 # Install
 yay -S bottles
 ```
+
+### flameshot - screenshots
+```
+# Install
+yay -S flameshot
+
+# Run
+flameshot gui
+
+# Config
+flameshot config
+# Also go to system shortcuts and set them
+```
