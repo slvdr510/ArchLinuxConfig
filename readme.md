@@ -449,3 +449,12 @@ flameshot gui
 flameshot config
 # Also go to system shortcuts and set them
 ```
+
+### input-remapper-git
+```
+# Install
+yay -S input-remapper-git
+
+# Run
+# in apps launcher -> search for input remapper
+```
