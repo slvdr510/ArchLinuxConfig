@@ -466,3 +466,18 @@ sudo pacman -S python-pipx
 
 # Use
 pipx install pywb
+```
+
+### merge .warc.gz
+```
+zcat file1.warc.gz file2.warc.gz file3.warc.gz | gzip > merged-archive.warc.gz
+```
+
+### ReplyWeb.page local host .warc.gz crawled sites
+```
+# Nav to
+https://github.com/webrecorder/replayweb.page/releases
+
+# Download the file called
+ReplayWeb.page-*.*.*.AppImage
+```
