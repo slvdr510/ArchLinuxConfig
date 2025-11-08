@@ -458,3 +458,11 @@ yay -S input-remapper-git
 # Run
 # in apps launcher -> search for input remapper
 ```
+
+### pipx
+```
+# Install
+sudo pacman -S python-pipx
+
+# Use
+pipx install pywb
