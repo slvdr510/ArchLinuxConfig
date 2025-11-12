@@ -481,3 +481,5 @@ https://github.com/webrecorder/replayweb.page/releases
 # Download the file called
 ReplayWeb.page-*.*.*.AppImage
 ```
+
+### krdc (RDP & VNC)
