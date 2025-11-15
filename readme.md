@@ -1,44 +1,142 @@
-# Comandos usados en Arch Linux
+# Things, scripts and config used in Arch Linux
 
-### SETUP lang for locale
+## SETUP lang for locale
+
+1. Open this file
+
+`sudo nano /etc/locale.gen`
+
+2. Uncoment the line you'd like, in my case:
+
 ```
-sudo nano /etc/locale.gen
-# Uncoment the line you'd like, in my case:
 en_US.UTF-8 UTF-8
 es_ES.UTF-8 UTF-8
-exit nano
-sudo locale-gen
-sudo nano /etc/locale.conf
-# add/overwrite the next lines:
+```
+
+3. Execute this
+
+`sudo locale-gen`
+
+4. Now lets open this file
+
+`sudo nano /etc/locale.conf`
+
+5. Add/overwrite the next lines
+   
+```
 LANG=en_US.UTF-8
 LC_TIME=es_ES.UTF-8
-exit nano
+```
+
+6. do this bullshit
+
+```
 unset LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT LC_IDENTIFICATION LC_ALL
 source /etc/profile.d/locale.sh
-# log out your sesion and log in
-# Now check with the next line in KDE plasma config it's all okey
-cat ~/.config/plasma-localerc
 ```
 
-### hibernation
+7. log out your sesion and log in
+
+8. Now check with the next line in KDE plasma config it's all okey
+
+`cat ~/.config/plasma-localerc`
+
+---
+
+## kde-plasma restart when detecting monitor changes
+
+1. Lets create this new file
+   
+`sudo nano /etc/udev/rules.d/99-monitor-hotplug.rules`
+
+2. Write inside the file this
+
+`ACTION=="change", SUBSYSTEM=="drm", HOTPLUG=="1", RUN+="/usr/local/bin/fix-plasma.sh"`
+
+3. Let's open the assigned script to run when monitor events happens
+
+`sudo nano /usr/local/bin/fix-plasma.sh`
+
+4. Now let's add the code to run when it detects a monitor change to this script we just asigned to the event.
+
 ```
-# Setup
-lsblk -l
-// get the uuid of the SWAP partition
-sudo nano /etc/default/grub
-// edit the next line and write the swap partition uuid
-GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=<tu-uuid-de-particion-swap>"
-// exit nano
-sudo nano /etc/mkinitcpio.conf
-// busca la linea sin comentar que pone: HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)
-// agrega resume despues de udev
-HOOKS=(base udev resume autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)
-// exit nano
-sudo mkinitcpio -P
-sudo grub-mkconfig -o /boot/grub/grub.cfg
+#!/bin/bash
+
+# --- CONFIGURE THIS ---
+USERNAME="salva"
+# --------------------
+
+USER_ID=$(id -u $USERNAME)
+DBUS_ADDRESS="unix:path=/run/user/$USER_ID/bus"
+LOCKFILE="/tmp/plasma-fix.lock"
+
+# This 'flock' command creates a lock. If the file is already locked
+# (by another instance of this script), this command will fail
+# and the script will exit.
+if ! flock -n $LOCKFILE -c "/bin/true"; then
+    # Already locked, another instance is running. Exit.
+    exit 0
+fi
+
+# --- We are the only instance running ---
+
+# Give the monitor a second to settle
+sleep 2
+
+# Run your commands as the correct user
+sudo -u $USERNAME DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=$DBUS_ADDRESS /usr/bin/killall plasmashell > /dev/null 2>&1
+sudo -u $USERNAME DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=$DBUS_ADDRESS /usr/bin/plasmashell > /dev/null 2>&1 &
+
+# Wait 5 seconds before releasing the lock to ignore the other udev events
+sleep 5
+
+# Delete the lock file
+rm -f $LOCKFILE
 ```
 
-### grub
+5. Now we reload udev rules:
+
+`sudo udevadm control --reload-rules`
+
+---
+
+## hibernation
+
+1. Let's list the uuid of the SWAP partition
+
+`lsblk -l`
+
+3. Open this file
+
+`sudo nano /etc/default/grub`
+
+4. edit the next line and write the swap partition uuid
+
+`GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=<tu-uuid-de-particion-swap>"`
+
+5. Edit this file
+
+`sudo nano /etc/mkinitcpio.conf`
+
+6. Search the uncommented line that says:
+
+`HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)`
+
+7. Add 'resume' after 'udev' (Should look like this)
+
+'HOOKS=(base udev resume autodetect microcode modconf kms keyboard keymap consolefont block filesystems fsck)'
+
+8. Rebuild your initramfs (Initial RAM File System)
+
+`sudo mkinitcpio -P`
+
+9. If mkinitcpio packs the kernel's emergency kit, grub-mkconfig updates the table of contents for your computer's "book" (your hard drive).
+
+`sudo grub-mkconfig -o /boot/grub/grub.cfg`
+
+---
+
+## grub
 ```
 # Install
 Still not covered
